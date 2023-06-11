@@ -8,10 +8,16 @@ import (
 )
 
 func queryCityHandler(w http.ResponseWriter, r *http.Request) {
+	city := r.URL.Query().Get("city")
+	if city == "" {
+		log.Println("cannot find valid city parameter")
+		responseWithError(w, 404, "cannot find valid city parameter")
+		return
+	}
+
 	apiCfg := apiConfig{}
 	apiKey := apiCfg.getApiKey()
 
-	city := "London"
 	log.Printf("Getting weather data for %v", city)
 	response, err := getCityWeather(apiKey, city)
 	if err != nil {

@@ -30,7 +30,7 @@ func main() {
 
 	PORT := os.Getenv("PORT")
 
-	http.HandleFunc("/query", queryCityHandler)
+	http.HandleFunc("/weather", queryCityHandler)
 
 	log.Println("Server is listening on port:", PORT)
 	startServerErr := http.ListenAndServe(":"+PORT, nil)
